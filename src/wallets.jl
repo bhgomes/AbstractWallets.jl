@@ -26,6 +26,7 @@ end
 """```
 AbstractAddress
 ```
+Abstraction for asset container addresses.
 """
 abstract type AbstractAddress end
 
@@ -45,13 +46,17 @@ const AbstractWalletOrAddress = Union{<: AbstractWallet, <: AbstractAddress}
 
 
 """```
+addresstype(::Type{AbstractWallet{K, V, N, A}}) === A
 ```
+Return address type for a given wallet.
 """
 addresstype(::Type{AbstractWallet{K, V, N, A}}) where {K, V, N, A} = A
 
 
 """```
+addresstype(::AbstractWallet{K, V, N, A}) === A
 ```
+Return address type for a given wallet.
 """
 addresstype(wallet::AbstractWallet) = addresstype(typeof(wallet))
 
@@ -59,7 +64,7 @@ addresstype(wallet::AbstractWallet) = addresstype(typeof(wallet))
 """```
 address(wallet::AbstractWallet) <: AbstractAddress
 ```
-Returns `address` of `wallet` for depositing.
+Return `address` of `wallet` for depositing.
 """
 function address(wallet::AbstractWallet{K, V, N, A})::A where {K, V, N, A}
     missing_api("address", wallet)

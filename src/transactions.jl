@@ -1,8 +1,6 @@
 # src/transactions.jl
 # Transaction API for Wallets
 
-include("wallets.jl")
-
 export AbstractTransaction,
        AbstractSendTransaction,
        AbstractDestroyTransaction,
@@ -72,7 +70,7 @@ stateof(transaction::AbstractTransaction{S})::S
 ```
 Return the current state (of type `S`) of the transaction.
 """
-function stateof(transaction::AbstractTransaction{S})::S
+function stateof(transaction::AbstractTransaction{S})::S where {S}
     missing_api("stateof", transaction)
 end
 

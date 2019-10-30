@@ -1,8 +1,6 @@
 # src/lists.jl
 # Whitelists/Blacklists for Wallets
 
-include("wallets.jl")
-
 export lists,
        listtags,
        list,
@@ -135,7 +133,7 @@ end
 """```
 whitelist(wallet::AbstractAddress)
 ```
-Returns current whitelist for the given `wallet`.
+Return current whitelist for the given `wallet`.
 """
 function whitelist(wallet::AbstractWallet)
     return list(wallet, :white)
@@ -168,7 +166,7 @@ end
 """```
 blacklist(wallet::AbstractAddress)
 ```
-Returns current blacklist for the given `wallet`.
+Return current blacklist for the given `wallet`.
 """
 function blacklist(wallet::AbstractWallet)
     return list(wallet, :black)
