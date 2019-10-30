@@ -1,0 +1,4 @@
+name = "AbstractWallets"
+uuid = "5f0830d6-faab-11e9-0c1a-a5525342cc9a"
+authors = ["bhgomes <bhgomes.github@gmail.com>"]
+version = "0.1.0"
