@@ -314,7 +314,7 @@ function send!(
     source::AbstractWallet{K, V, N},
     target::AbstractWalletOrAddress,
     asset::K,
-    quantity::N,
+    quantity::N;
     fulfill_maximum=false,
     check=x->true,
     onfailure=identity
