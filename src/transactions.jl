@@ -6,6 +6,7 @@ export AbstractTransaction,
        AbstractDestroyTransaction,
        statetype,
        stateof,
+       associatedfee,
        history,
        transactions_between,
        withdrawls,
@@ -16,8 +17,8 @@ export AbstractTransaction,
        cancel!,
        rollback!,
        cancelback!,
-       has_executed,
        is_pending,
+       has_executed,
        was_fulfilled,
        was_cancelled,
        failed,
@@ -72,6 +73,16 @@ Return the current state (of type `S`) of the transaction.
 """
 function stateof(transaction::AbstractTransaction{S})::S where {S}
     missing_api("stateof", transaction)
+end
+
+
+"""```
+associatedfee(transaction::AbstractTransaction)
+```
+Return the fee associated to the given `transaction`.
+"""
+function associatedfee(transaction::AbstractTransaction)::AbstractDestroyTransaction
+    missing_api("associatedfee", transaction)
 end
 
 
@@ -250,22 +261,22 @@ end
 
 
 """```
-has_executed(transaction::AbstractTransaction)::Bool
-```
-Check if `transaction` has been executed.
-"""
-function has_executed(transaction::AbstractTransaction)::Bool
-    missing_api("has_executed", transaction)
-end
-
-
-"""```
 is_pending(transaction::AbstractTransaction)::Bool
 ```
 Check if `transaction` has been executed but is pending.
 """
 function is_pending(transaction::AbstractTransaction)::Bool
     missing_api("is_pending", transaction)
+end
+
+
+"""```
+has_executed(transaction::AbstractTransaction)::Bool
+```
+Check if `transaction` has been executed.
+"""
+function has_executed(transaction::AbstractTransaction)::Bool
+    missing_api("has_executed", transaction)
 end
 
 

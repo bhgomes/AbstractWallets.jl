@@ -82,7 +82,7 @@ function swaplist!(
         delist!(wallet, target, tag2)
         enlist!(wallet, target, tag1)
     else
-        throw(ArgumentError("`$target` was not on `$tag1` or `$tag2` lists in `$wallet`"))
+        throw(ArgumentError("`$target` was not on `$tag1` or `$tag2` list in `$wallet`"))
     end
 end
 
