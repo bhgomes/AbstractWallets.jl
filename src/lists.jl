@@ -192,5 +192,5 @@ function onblacklist(
     wallet::AbstractWallet,
     target::AbstractWalletOrAddress
 )::Bool
-    return onlist!(wallet, target, :black)
+    return onlist(wallet, target, :black)
 end

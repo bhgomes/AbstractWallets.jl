@@ -11,6 +11,7 @@ Abstractions Module for Digital Wallets.
 module AbstractWallets
 
 include("wallets.jl")
+include("portfolios.jl")
 include("transactions.jl")
 include("lists.jl")
 

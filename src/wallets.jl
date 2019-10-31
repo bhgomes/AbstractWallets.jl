@@ -32,10 +32,16 @@ abstract type AbstractAddress end
 
 
 """```
-AbstractWallet{K, V, N, A <: AbstractAddress} <: AbstractDict{K, V}
 ```
 """
-abstract type AbstractWallet{K, V, N, A <: AbstractAddress} <: AbstractDict{K, V} end
+abstract type AbstractPortfolio{K, N} <: AbstractDict{K, N} end
+
+
+"""```
+AbstractWallet{K, N, P <: AbstractPortfolio{K, N}, A <: AbstractAddress}
+```
+"""
+abstract type AbstractWallet{K, N, P <: AbstractPortfolio{K, N}, A <: AbstractAddress} end
 
 
 """```
@@ -46,15 +52,41 @@ const AbstractWalletOrAddress = Union{<: AbstractWallet, <: AbstractAddress}
 
 
 """```
-addresstype(::Type{AbstractWallet{K, V, N, A}}) === A
+portfoliotype(::Type{AbstractWallet{K, N, P, A}}) === P
 ```
-Return address type for a given wallet.
+Return portfolio type for a given wallet.
 """
-addresstype(::Type{AbstractWallet{K, V, N, A}}) where {K, V, N, A} = A
+portfoliotype(::Type{AbstractWallet{K, N, P, A}}) where {K, N, P, A} = P
 
 
 """```
-addresstype(::AbstractWallet{K, V, N, A}) === A
+portfoliotype(::AbstractWallet{K, N, P, A}) === A
+```
+Return portfolio type for a given wallet.
+"""
+portfoliotype(wallet::AbstractWallet) = portfoliotype(typeof(wallet))
+
+
+"""```
+portfolio(wallet::AbstractWallet) <: AbstractPortfolio
+```
+Return `portfolio` of `wallet` for depositing.
+"""
+function portfolio(wallet::AbstractWallet{K, N, P})::P where {K, N, P}
+    missing_api("portfolio", wallet)
+end
+
+
+"""```
+addresstype(::Type{AbstractWallet{K, N, P, A}}) === A
+```
+Return address type for a given wallet.
+"""
+addresstype(::Type{AbstractWallet{K, N, P, A}}) where {K, N, P, A} = A
+
+
+"""```
+addresstype(::AbstractWallet{K, N, P, A}) === A
 ```
 Return address type for a given wallet.
 """
@@ -66,53 +98,6 @@ address(wallet::AbstractWallet) <: AbstractAddress
 ```
 Return `address` of `wallet` for depositing.
 """
-function address(wallet::AbstractWallet{K, V, N, A})::A where {K, V, N, A}
+function address(wallet::AbstractWallet{K, N, P, A})::A where {K, N, P, A}
     missing_api("address", wallet)
-end
-
-
-"""```
-contains(wallet::AbstractWallet{K, V, N}, asset::K, quantity::N)
-```
-Check if the `wallet` contains `quantity` amount of the given `asset`. 
-"""
-function contains(
-    wallet::AbstractWallet{K, V, N},
-    asset::K,
-    quantity::N
-) where {K, V, N}
-    missing_api("contains", wallet, asset, quantity)
-end
-
-
-"""```
-quantity_contained(wallet::AbstractWallet{K}, asset::K)
-```
-Calculate the amount of `asset` contained in the `wallet`. If the asset is not
-in the wallet, a suitable null value should be returned.
-"""
-function quantity_contained(wallet::AbstractWallet{K}, asset::K) where {K}
-    missing_api("quantity_contained", wallet, asset)
-end
-
-
-"""```
-value_contained(wallet::AbstractWallet{K}, asset::K, base)
-```
-Calculate the total value of a given `asset` contained in the `wallet` in the
-given `base` asset (not necessarily contained in the `wallet`). 
-"""
-function value_contained(wallet::AbstractWallet{K}, asset::K, base) where {K}
-    missing_api("value_contained", wallet, asset, base)
-end
-
-
-"""```
-value_contained(wallet::AbstractWallet, base)
-```
-Calculate the total value contained in the `wallet` in the given `base` asset
-(not necessarily contained in the `wallet`). 
-"""
-function value_contained(wallet::AbstractWallet, base)
-    return sum((asset, _) -> value_contained(wallet, asset, base), wallet)
 end
