@@ -1,13 +1,18 @@
 # AbstractWallets.jl
 
+[![Travis Build Status](https://travis-ci.com/bhgomes/AbstractWallets.jl.svg?branch=master)](https://travis-ci.com/bhgomes/AbstractWallets.jl)
+[![GitHub Repo](https://img.shields.io/badge/repo-GitHub-black)](https://github.com/bhgomes/AbstractWallets.jl)
+
 _Abstractions for Digital Wallets in Julia_
 
-[![Travis Build Status](https://travis-ci.com/bhgomes/AbstractWallets.jl.svg?branch=master)](https://travis-ci.com/bhgomes/AbstractWallets.jl)
+```@meta
+CurrentModule = AbstractWallets
+```
 
-# Basic Types
+The `AbstractWallets` package describes an API for digital asset wallets which focuses on three key properties: internal portfolio, transaction layer and transaction histories, and custom address lists (whitelist/blacklist/...). See the [Implementing Wallet API: Guide](impl/guide.md) page for more details.
 
-The basic types are many and here they are ...
+To install `AbstractWallets` run the following in a Julia REPL:
 
----
-##### [(UN)LICENSE](../../UNLICENSE)
-Knowledge is Freedom.
+```julia
+]add AbstractWallets
+```

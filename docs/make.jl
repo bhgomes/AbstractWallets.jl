@@ -13,7 +13,18 @@ makedocs(
     format    = Documenter.HTML(prettyurls=!("local" in ARGS)),
     sitename  = "AbstractWallets.jl",
     authors   = "Brandon H Gomes",
-    pages     = Any["Home" => "index.md",],
+    pages     = [
+        "Home" => "index.md",
+        "Implementing Wallet API" => [
+            "Guide" => "impl/guide.md",
+            "Example Projects" => "impl/examples.md",
+        ],
+        "Library" => [
+            "Wallets and Portfolios" => "lib/wallets.md",
+            "Transactions" => "lib/transactions.md",
+            "Custom Wallet Lists" => "lib/lists.md",
+        ]
+    ],
 )
 
 deploydocs(
