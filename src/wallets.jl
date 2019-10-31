@@ -34,21 +34,21 @@ abstract type AbstractAddress end
 """```
 ```
 """
-abstract type AbstractPortfolio{K, N} <: AbstractDict{K, N} end
+abstract type AbstractPortfolio{K,N} <: AbstractDict{K,N} end
 
 
 """```
 AbstractWallet{K, N, P <: AbstractPortfolio{K, N}, A <: AbstractAddress}
 ```
 """
-abstract type AbstractWallet{K, N, P <: AbstractPortfolio{K, N}, A <: AbstractAddress} end
+abstract type AbstractWallet{K,N,P<:AbstractPortfolio{K,N},A<:AbstractAddress} end
 
 
 """```
 AbstractWalletOrAddress === Union{<: AbstractWallet, <: AbstractAddress}
 ```
 """
-const AbstractWalletOrAddress = Union{<: AbstractWallet, <: AbstractAddress}
+const AbstractWalletOrAddress = Union{<:AbstractWallet,<:AbstractAddress}
 
 
 """```
@@ -56,7 +56,7 @@ portfoliotype(::Type{AbstractWallet{K, N, P, A}}) === P
 ```
 Return portfolio type for a given wallet.
 """
-portfoliotype(::Type{AbstractWallet{K, N, P, A}}) where {K, N, P, A} = P
+portfoliotype(::Type{AbstractWallet{K,N,P,A}}) where {K,N,P,A} = P
 
 
 """```
@@ -72,7 +72,7 @@ portfolio(wallet::AbstractWallet) <: AbstractPortfolio
 ```
 Return `portfolio` of `wallet` for depositing.
 """
-function portfolio(wallet::AbstractWallet{K, N, P})::P where {K, N, P}
+function portfolio(wallet::AbstractWallet{K,N,P})::P where {K,N,P}
     missing_api("portfolio", wallet)
 end
 
@@ -82,7 +82,7 @@ addresstype(::Type{AbstractWallet{K, N, P, A}}) === A
 ```
 Return address type for a given wallet.
 """
-addresstype(::Type{AbstractWallet{K, N, P, A}}) where {K, N, P, A} = A
+addresstype(::Type{AbstractWallet{K,N,P,A}}) where {K,N,P,A} = A
 
 
 """```
@@ -98,6 +98,6 @@ address(wallet::AbstractWallet) <: AbstractAddress
 ```
 Return `address` of `wallet` for depositing.
 """
-function address(wallet::AbstractWallet{K, N, P, A})::A where {K, N, P, A}
+function address(wallet::AbstractWallet{K,N,P,A})::A where {K,N,P,A}
     missing_api("address", wallet)
 end

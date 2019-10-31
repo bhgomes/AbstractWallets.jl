@@ -21,7 +21,7 @@ StringLike === Union{Symbol, <: AbstractString}
 ```
 `String`-like objects are either `Symbol`s or `AbstractString`s.
 """
-const StringLike = Union{Symbol, <: AbstractString}
+const StringLike = Union{Symbol,<:AbstractString}
 
 
 """```
@@ -59,11 +59,7 @@ enlist!(wallet::AbstractWallet, target::AbstractWalletOrAddress, tag)
 ```
 Add `target` to the `tag` list on the given `wallet`.
 """
-function enlist!(
-    wallet::AbstractWallet,
-    target::AbstractWalletOrAddress,
-    tag::StringLike
-)
+function enlist!(wallet::AbstractWallet, target::AbstractWalletOrAddress, tag::StringLike)
     missing_api("enlist", wallet, target, tag)
 end
 
@@ -76,8 +72,8 @@ Swap `target` from `tag1` list to `tag2` list in `wallet`.
 function swaplist!(
     wallet::AbstractWallet,
     target::AbstractWalletOrAddress,
-    tag1::StringLike=:black,
-    tag2::StringLike=:white
+    tag1::StringLike = :black,
+    tag2::StringLike = :white,
 )
     if onlist(wallet, target, tag1)
         delist!(wallet, target, tag1)
@@ -86,8 +82,7 @@ function swaplist!(
         delist!(wallet, target, tag2)
         enlist!(wallet, target, tag1)
     else
-        throw(ArgumentError(
-            "`$target` was not on `$tag1` or `$tag2` lists in `$wallet`"))
+        throw(ArgumentError("`$target` was not on `$tag1` or `$tag2` lists in `$wallet`"))
     end
 end
 
@@ -97,11 +92,7 @@ onlist(wallet::AbstractWallet, target::AbstractWalletOrAddress, tag)
 ```
 Check if `target` is on the `tag` list on the given `wallet`.
 """
-function onlist(
-    wallet::AbstractWallet,
-    target::AbstractWalletOrAddress,
-    tag::StringLike
-)::Bool
+function onlist(wallet::AbstractWallet, target::AbstractWalletOrAddress, tag::StringLike)::Bool
     return target in list(wallet, tag)
 end
 
@@ -111,11 +102,7 @@ delist!(wallet::AbstractWallet, target::AbstractWalletOrAddress, tag::StringLike
 ```
 Remove `target` from `tag` list on the `wallet`.
 """
-function delist!(
-    wallet::AbstractWallet,
-    target::AbstractWalletOrAddress,
-    tag::StringLike
-)
+function delist!(wallet::AbstractWallet, target::AbstractWalletOrAddress, tag::StringLike)
     missing_api("delist!", wallet, target, tag)
 end
 
@@ -155,10 +142,7 @@ onwhitelist(wallet::AbstractWallet, target::AbstractWalletOrAddress)
 ```
 Check if `target` is on the `wallet` whitelist.
 """
-function onwhitelist(
-    wallet::AbstractWallet,
-    target::AbstractWalletOrAddress
-)::Bool
+function onwhitelist(wallet::AbstractWallet, target::AbstractWalletOrAddress)::Bool
     return onlist(wallet, target, :white)
 end
 
@@ -188,9 +172,6 @@ onblacklist(wallet::AbstractWallet, target::AbstractWalletOrAddress)
 ```
 Check if `target` is on the `wallet` blacklist.
 """
-function onblacklist(
-    wallet::AbstractWallet,
-    target::AbstractWalletOrAddress
-)::Bool
+function onblacklist(wallet::AbstractWallet, target::AbstractWalletOrAddress)::Bool
     return onlist(wallet, target, :black)
 end

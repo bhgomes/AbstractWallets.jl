@@ -90,10 +90,7 @@ transactions_between(source::AbstractWallet, target::AbstractWalletOrAddress)
 ```
 Return all transactions between `source` and `target`.
 """
-function transactions_between(
-    source::AbstractWallet,
-    target::AbstractWalletOrAddress
-)
+function transactions_between(source::AbstractWallet, target::AbstractWalletOrAddress)
     missing_api("transactions_between", source, target)
 end
 
@@ -103,10 +100,7 @@ transactions_between(source::AbstractWalletOrAddress, target::AbstractWallet)
 ```
 Return all transactions between `source` and `target`.
 """
-function transactions_between(
-    source::AbstractWalletOrAddress,
-    target::AbstractWallet
-)
+function transactions_between(source::AbstractWalletOrAddress, target::AbstractWallet)
     missing_api("transactions_between", source, target)
 end
 
@@ -116,10 +110,7 @@ withdrawls(wallet::AbstractWalletOrAddress, target::AbstractWallet)
 ```
 Return all send transactions to `target` from `wallet`.
 """
-function withdrawls(
-    wallet::AbstractWallet,
-    target::AbstractWalletOrAddress
-)
+function withdrawls(wallet::AbstractWallet, target::AbstractWalletOrAddress)
     missing_api("withdrawls", wallet, target)
 end
 
@@ -139,10 +130,7 @@ deposits(wallet::AbstractWalletOrAddress, source::AbstractWallet)
 ```
 Return all send transactions from `source` to `wallet`.
 """
-function deposits(
-    wallet::AbstractWallet,
-    source::AbstractWalletOrAddress
-)
+function deposits(wallet::AbstractWallet, source::AbstractWalletOrAddress)
     missing_api("deposits", wallet, source)
 end
 
@@ -167,14 +155,19 @@ If `fulfill_maximum` is `true`, then fulfill as much of the transaction as
 possible.
 """
 function build_send_transaction(
-    source::AbstractWallet{K, N},
+    source::AbstractWallet{K,N},
     target::AbstractWalletOrAddress,
     asset::K,
     quantity::N;
-    fulfill_maximum=false
-)::AbstractSendTransaction where {K, N}
-    missing_api("build_send_transaction",
-        source, target, asset, quantity; fulfill_maximum=fulfill_maximum
+    fulfill_maximum = false,
+)::AbstractSendTransaction where {K,N}
+    missing_api(
+        "build_send_transaction",
+        source,
+        target,
+        asset,
+        quantity;
+        fulfill_maximum = fulfill_maximum,
     )
 end
 
@@ -189,13 +182,17 @@ it is contained in this `quantity` in the original `wallet`. If
 possible.
 """
 function build_destroy_transaction(
-    wallet::AbstractWallet{K, N},
+    wallet::AbstractWallet{K,N},
     asset::K,
     quantity::N;
-    fulfill_maximum=false
-)::AbstractDestroyTransaction where {K, N}
-    missing_api("build_destroy_transaction",
-        wallet, asset, quantity, fulfill_maximum=fulfill_maximum
+    fulfill_maximum = false,
+)::AbstractDestroyTransaction where {K,N}
+    missing_api(
+        "build_destroy_transaction",
+        wallet,
+        asset,
+        quantity,
+        fulfill_maximum = fulfill_maximum,
     )
 end
 
@@ -237,8 +234,8 @@ Rollback a fulfilled transaction or cancel a pending one.
 """
 function cancelback!(
     transaction::AbstractTransaction;
-    onsuccess=identity,
-    onfailure=identity
+    onsuccess = identity,
+    onfailure = identity,
 )
     if was_fulfilled(transaction)
         return rollback!(transaction)
@@ -311,16 +308,20 @@ quantity in the original wallet. If `fulfill_maximum` is `true`, then fulfill
 as much of the transaction as possible.
 """
 function send!(
-    source::AbstractWallet{K, N},
+    source::AbstractWallet{K,N},
     target::AbstractWalletOrAddress,
     asset::K,
     quantity::N;
-    fulfill_maximum=false,
-    check=x->true,
-    onfailure=identity
-) where {K, N}
-    transaction = build_send_transaction(source, target, asset, quantity;
-        fulfill_maximum=fulfill_maximum
+    fulfill_maximum = false,
+    check = x -> true,
+    onfailure = identity,
+) where {K,N}
+    transaction = build_send_transaction(
+        source,
+        target,
+        asset,
+        quantity;
+        fulfill_maximum = fulfill_maximum,
     )
     if !check(transaction)
         return onfailure(transaction)
@@ -338,15 +339,18 @@ If `fulfill_maximum` is `true`, then fulfill as much of the transaction as
 possible.
 """
 function destroy!(
-    wallet::AbstractWallet{K, N},
+    wallet::AbstractWallet{K,N},
     asset::K,
     quantity::N;
-    fulfill_maximum=false,
-    check=x->true,
-    onfailure=identity
-) where {K, N}
-    transaction = build_destroy_transaction(wallet, asset, quantity;
-        fulfill_maximum=fulfill_maximum
+    fulfill_maximum = false,
+    check = x -> true,
+    onfailure = identity,
+) where {K,N}
+    transaction = build_destroy_transaction(
+        wallet,
+        asset,
+        quantity;
+        fulfill_maximum = fulfill_maximum,
     )
     if !check(transaction)
         return onfailure(transaction)
