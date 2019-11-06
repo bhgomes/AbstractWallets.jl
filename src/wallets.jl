@@ -1,15 +1,17 @@
 # src/wallets.jl
-# Core Wallet API
+# Abstractions of Digital Wallets
 
 export missing_api,
        AbstractAddress,
+       AbstractPortfolio,
        AbstractWallet,
        AbstractWalletOrAddress,
+       portfoliotype,
+       portfolio,
+       wallet,
        addresstype,
        address,
-       contains,
-       quantity_contained,
-       value_contained
+       new_address!
 
 
 """```
@@ -108,20 +110,20 @@ addresstype(wallet::AbstractWallet) = addresstype(typeof(wallet))
 
 
 """```
-address(wallet::AbstractWallet) <: AbstractAddress
+address(wallet::AbstractWallet)
 ```
-Return `address` of `wallet` for depositing.
+Return current `address` of `wallet` for depositing.
 """
 function address(wallet::AbstractWallet{K,N,P,A})::A where {K,N,P,A}
-    missing_api("address", wallet)
+    missing_api("address", portfolio)
 end
 
 
 """```
-address(portfolio::AbstractPortfolio) <: AbstractAddress
+new_address!(wallet::AbstractWallet)
 ```
-Return `address` of the overlying wallet of the given `portfolio`.
+Return new `address` of `wallet` for depositing.
 """
-function address(portfolio::AbstractPortfolio)
-    return address(wallet(portfolio))
+function new_address!(wallet::AbstractWallet{K,N,P,A})::A where {K,N,P,A}
+    missing_api("new_address!", wallet)
 end

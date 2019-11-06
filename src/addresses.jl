@@ -1,13 +1,14 @@
-# src/lists.jl
-# Whitelists/Blacklists for Wallets
+# src/addresses.jl
+# Address Lists for Wallets
 
 export lists,
-       listtags,
        list,
        enlist!,
        swaplist!,
        onlist,
        delist!,
+       addresses,
+       address,
        whitelist,
        whitelist!,
        onwhitelist,
@@ -35,22 +36,12 @@ end
 
 
 """```
-listtags(wallet::AbstractWallet)
-```
-Return the tags for all lists on the `wallet`.
-"""
-function listtags(wallet::AbstractWallet)
-    missing_api("listtags", wallet)
-end
-
-
-"""```
 list(wallet::AbstractWallet, tag::StringLike)
 ```
 Return specific list from `wallet` corresponding to `tag`.
 """
 function list(wallet::AbstractWallet, tag::StringLike)
-    return lists(wallet)[tag]
+    return getindex(lists(wallet), tag)
 end
 
 
@@ -114,6 +105,26 @@ Remove `target` from any list on the `wallet`.
 """
 function delist!(wallet::AbstractWallet, target::AbstractWalletOrAddress)
     missing_api("delist!", wallet, target)
+end
+
+
+"""```
+addresses(wallet::AbstractWallet)
+```
+Return `addresses` of `wallet` for depositing.
+"""
+function addresses(wallet::AbstractWallet)
+    return list(wallet, :addresses)
+end
+
+
+"""```
+address(wallet::AbstractWallet{K}, asset::K)
+```
+Return the `address` of `wallet` for depositing the given `asset`.
+"""
+function address(wallet::AbstractWallet{K}, asset::K) where {K}
+    return getindex(addresses(wallet), asset)
 end
 
 

@@ -1,5 +1,5 @@
 # src/transactions.jl
-# Transaction API for Wallets
+# Transactions for Wallets
 
 export AbstractTransaction,
        AbstractSendTransaction,
@@ -13,13 +13,14 @@ export AbstractTransaction,
        deposits,
        build_send_transaction,
        build_destroy_transaction,
+       sign!,
        execute!,
        cancel!,
        rollback!,
        cancelback!,
        is_pending,
        has_executed,
-       was_fulfilled,
+       was_completed,
        was_cancelled,
        failed,
        send!,
@@ -209,6 +210,16 @@ end
 
 
 """```
+sign!(transaction::AbstractTransaction)
+```
+Sign the given `transaction`.
+"""
+function sign!(transaction::AbstractTransaction, parties)
+    missing_api("sign!", transaction, parties)
+end
+
+
+"""```
 execute!(transaction::AbstractTransaction)
 ```
 Execute the given `transaction` and wait for a return signal.
@@ -281,12 +292,12 @@ end
 
 
 """```
-was_fulfilled(transaction::AbstractTransaction)::Bool
+was_completed(transaction::AbstractTransaction)::Bool
 ```
 Check if `transaction` was fulfilled.
 """
-function was_fulfilled(transaction::AbstractTransaction)::Bool
-    missing_api("was_fulfilled", transaction)
+function was_completed(transaction::AbstractTransaction)::Bool
+    missing_api("was_completed", transaction)
 end
 
 

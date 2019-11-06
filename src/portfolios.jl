@@ -1,7 +1,7 @@
 # src/portfolios.jl
 # Abstract Portfolios
 
-export contains, quantity_contained, value_contained
+export contains, quantity_contained, balance
 
 
 """```
@@ -47,44 +47,44 @@ end
 
 
 """```
-value_contained(portfolio::AbstractPortfolio{K}, asset::K, base)
+balance(portfolio::AbstractPortfolio{K}, asset::K, base)
 ```
 Calculate the total value of a given `asset` contained in the `portfolio` in the
 given `base` asset (not necessarily contained in the `portfolio`).
 """
-function value_contained(portfolio::AbstractPortfolio{K}, asset::K, base) where {K}
-    missing_api("value_contained", portfolio, asset, base)
+function balance(portfolio::AbstractPortfolio{K}, asset::K, base) where {K}
+    missing_api("balance", portfolio, asset, base)
 end
 
 
 """```
-value_contained(wallet::AbstractWallet{K}, asset::K, base)
+balance(wallet::AbstractWallet{K}, asset::K, base)
 ```
 Calculate the total value of a given `asset` contained in the `wallet` in the
 given `base` asset (not necessarily contained in the `wallet`).
 """
-function value_contained(wallet::AbstractWallet{K}, asset::K, base) where {K}
-    return value_contained(portfolio(wallet), asset, base)
+function balance(wallet::AbstractWallet{K}, asset::K, base) where {K}
+    return balance(portfolio(wallet), asset, base)
 end
 
 
 """```
-value_contained(portfolio::AbstractPortfolio, base)
+balance(portfolio::AbstractPortfolio, base)
 ```
 Calculate the total value contained in the `portfolio` in the given `base` asset
 (not necessarily contained in the `portfolio`).
 """
-function value_contained(portfolio::AbstractPortfolio, base)
-    return sum((asset, _) -> value_contained(portfolio, asset, base), portfolio)
+function balance(portfolio::AbstractPortfolio, base)
+    return sum((asset, _) -> balance(portfolio, asset, base), portfolio)
 end
 
 
 """```
-value_contained(wallet::AbstractWallet, base)
+balance(wallet::AbstractWallet, base)
 ```
 Calculate the total value contained in the `wallet` in the given `base` asset
 (not necessarily contained in the `wallet`).
 """
-function value_contained(wallet::AbstractWallet, base)
-    return value_contained(portfolio(wallet), base)
+function balance(wallet::AbstractWallet, base)
+    return balance(portfolio(wallet), base)
 end
