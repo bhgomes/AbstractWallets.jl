@@ -8,6 +8,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/pinmr5hvxo04uahp?svg=true)](https://ci.appveyor.com/project/bhgomes/abstractwallets-jl)
 [![Formatting](https://img.shields.io/badge/format-tab%204%20margin%2096-888)](https://github.com/domluna/JuliaFormatter.jl)
 [![GitHub Repo](https://img.shields.io/badge/repo-GitHub-black)](https://github.com/bhgomes/AbstractWallets.jl)
+[![DOI](https://zenodo.org/badge/218436667.svg)](https://zenodo.org/badge/latestdoi/218436667)
 
 _Abstractions for Digital Wallets in Julia_
 
