@@ -259,7 +259,7 @@ function cancelback!(
     onsuccess = identity,
     onfailure = identity,
 )
-    if was_fulfilled(transaction)
+    if was_completed(transaction)
         return rollback!(transaction)
     elseif is_pending(transaction)
         return cancel!(transaction)

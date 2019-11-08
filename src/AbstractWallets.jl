@@ -11,7 +11,7 @@ See https://github.com/bhgomes/AbstractWallets.jl for more details.
 """
 module AbstractWallets
 
-include("wallets.jl")
+include("core.jl")
 include("portfolios.jl")
 include("transactions.jl")
 include("addresses.jl")

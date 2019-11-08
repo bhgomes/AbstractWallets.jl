@@ -1,4 +1,4 @@
-# src/wallets.jl
+# src/core.jl
 # Abstractions of Digital Wallets
 
 export missing_api,
@@ -20,7 +20,7 @@ missing_api(name, args...; kwargs...)
 Throw an `ArgumentError` if the function with name `name` is not defined on
 the given `args` and `kwargs`.
 """
-function missing_api(name::AbstractString, args...; kwargs...)
+function missing_api(name::Union{Symbol,AbstractString}, args...; kwargs...)
     throw(ArgumentError("`$name` is not defined for `$args, $kwargs`"))
 end
 
