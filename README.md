@@ -8,7 +8,6 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/pinmr5hvxo04uahp?svg=true)](https://ci.appveyor.com/project/bhgomes/abstractwallets-jl)
 [![Formatting](https://img.shields.io/badge/format-tab%204%20margin%2096-888)](https://github.com/domluna/JuliaFormatter.jl)
 
-[![GitHub Repo](https://img.shields.io/badge/repo-GitHub-black)](https://github.com/bhgomes/AbstractWallets.jl)
 [![DOI](https://zenodo.org/badge/218436667.svg)](https://zenodo.org/badge/latestdoi/218436667)
 
 _Abstractions for Digital Wallets in Julia_
@@ -82,6 +81,8 @@ A deterministic wallet can generate new public-private key pairs from one root p
 ---
 <div align="center">
 
-#### [(UN)LICENSE](UNLICENSE)
-Knowledge is Freedom.
+[![Author](https://img.shields.io/badge/-bhgomes-blue?style=for-the-badge)](https://github.com/bhgomes)
+[![License](https://img.shields.io/badge/-UNLICENSE-lightgray?style=for-the-badge)](UNLICENSE)
+[![GitHub Repo](https://img.shields.io/badge/-GitHub-black?style=for-the-badge)](https://github.com/bhgomes/AbstractWallets.jl)
+
 </div>
