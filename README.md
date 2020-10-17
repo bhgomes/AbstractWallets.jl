@@ -2,11 +2,11 @@
 
 # AbstractWallets.jl
 
-[![Stable Docs](https://img.shields.io/badge/docs-stable-blue.svg)](https://bhgomes.github.io/AbstractWallets.jl/stable)
-[![Latest Docs](https://img.shields.io/badge/docs-latest-blue.svg)](https://bhgomes.github.io/AbstractWallets.jl/latest)
-[![Travis Build Status](https://travis-ci.com/bhgomes/AbstractWallets.jl.svg?branch=master)](https://travis-ci.com/bhgomes/AbstractWallets.jl)
-[![Build status](https://ci.appveyor.com/api/projects/status/pinmr5hvxo04uahp?svg=true)](https://ci.appveyor.com/project/bhgomes/abstractwallets-jl)
-[![Formatting](https://img.shields.io/badge/format-tab%204%20margin%2096-888)](https://github.com/domluna/JuliaFormatter.jl)
+[![Stable Docs](https://img.shields.io/badge/docs-stable-blue.svg?style=flat-square)](https://bhgomes.github.io/AbstractWallets.jl/stable)
+[![Latest Docs](https://img.shields.io/badge/docs-latest-blue.svg?style=flat-square)](https://bhgomes.github.io/AbstractWallets.jl/latest)
+[![Travis Build Status](https://img.shields.io/travis/com/bhgomes/AbstractWallets.jl?style=flat-square)](https://travis-ci.com/bhgomes/AbstractWallets.jl)
+[![Appveyor Build status](https://img.shields.io/appveyor/ci/bhgomes/abstractwallets-jl?style=flat-square)](https://ci.appveyor.com/project/bhgomes/abstractwallets-jl)
+[![Formatting](https://img.shields.io/badge/format-tab%204%20margin%2096-888?style=flat-square)](https://github.com/domluna/JuliaFormatter.jl)
 
 [![DOI](https://zenodo.org/badge/218436667.svg)](https://zenodo.org/badge/latestdoi/218436667)
 
